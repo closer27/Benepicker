@@ -14,23 +14,34 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let receiption: String = "[Web발신]\n" +
+        let receipt: String = "[Web발신]\n" +
         "KB국민카드 4*6*\n" +
         "김*원님\n" +
         "11/03 09:29\n" +
         "3,300원\n" +
         "스타벅스커피코\n" +
         "누적 490,040원\n"
+//        "2.19(US$)\n"
         
-        let items: [String] = receiption.characters.split{$0 == "\n"}.map(String.init)
+        let items: [String] = self.extractReceipt(receipt)
+        
         let datePattern: String = "\\d{2}/\\d{2} \\d{2}:\\d{2}"
+        let spendPattern: String = "^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?원$"
+//        let spendPattern: String = "^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?(원|\\(US\\$))$"
+        
         for item in items {
             if item =~ datePattern {
                 print("\(item) is date")
+            } else if item =~ spendPattern {
+                print("\(item) is spend")
             }
         }
     }
 
+    func extractReceipt(_ receiptString: String) -> [String] {
+        return receiptString.characters.split{$0 == "\n"}.map(String.init)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
