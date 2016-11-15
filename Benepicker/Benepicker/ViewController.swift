@@ -25,17 +25,28 @@ class ViewController: UIViewController {
         
         let items: [String] = self.extractReceipt(receipt)
         
+        let postedPattern: String = "\\[\\S{0,}\\]"
+        let cardPattern: String = "^KB국민(카드|체크)\\s*(\\d\\*\\d\\*)?$"
         let namePattern: String = "\\S{0,}님"
         let datePattern: String = "\\d{2}/\\d{2} \\d{2}:\\d{2}"
         let spendPattern: String = "^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?(원|\\(US\\$\\))$"
+        let totalSpendPattern: String = "^누적\\s[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?(원|\\(US\\$\\))$"
         
         for item in items {
-            if item =~ datePattern {
+            if item =~ postedPattern {
+                print("\(item) is posted")
+            } else if item =~ cardPattern {
+                print("\(item) is card")
+            } else if item =~ namePattern {
+                print("\(item) is name")
+            } else if item =~ datePattern {
                 print("\(item) is date")
             } else if item =~ spendPattern {
                 print("\(item) is spend")
-            } else if item =~ namePattern {
-                print("\(item) is name")
+            } else if item =~ totalSpendPattern {
+                print("\(item) is totalSpend")
+            } else {
+                print("\(item) is usedPlace")
             }
         }
     }
