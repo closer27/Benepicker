@@ -26,8 +26,7 @@ class ViewController: UIViewController {
         let items: [String] = self.extractReceipt(receipt)
         
         let datePattern: String = "\\d{2}/\\d{2} \\d{2}:\\d{2}"
-        let spendPattern: String = "^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?원$"
-//        let spendPattern: String = "^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?(원|\\(US\\$))$"
+        let spendPattern: String = "^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?(원|\\(US\\$\\))$"
         
         for item in items {
             if item =~ datePattern {
