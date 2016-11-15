@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         
         let items: [String] = self.extractReceipt(receipt)
         
+        let namePattern: String = "\\S{0,}님"
         let datePattern: String = "\\d{2}/\\d{2} \\d{2}:\\d{2}"
         let spendPattern: String = "^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?(원|\\(US\\$\\))$"
         
@@ -33,6 +34,8 @@ class ViewController: UIViewController {
                 print("\(item) is date")
             } else if item =~ spendPattern {
                 print("\(item) is spend")
+            } else if item =~ namePattern {
+                print("\(item) is name")
             }
         }
     }
