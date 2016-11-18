@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0E850E1DDF609A0011623D /* ReceiptParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0E850D1DDF609A0011623D /* ReceiptParser.swift */; };
 		4E86E87A1DD47DDF00A4A307 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86E8791DD47DDF00A4A307 /* AppDelegate.swift */; };
 		4E86E87C1DD47DDF00A4A307 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86E87B1DD47DDF00A4A307 /* ViewController.swift */; };
 		4E86E87F1DD47DDF00A4A307 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E86E87D1DD47DDF00A4A307 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 		4E86E8921DD47DDF00A4A307 /* BenepickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86E8911DD47DDF00A4A307 /* BenepickerTests.swift */; };
 		4E86E89D1DD47DDF00A4A307 /* BenepickerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86E89C1DD47DDF00A4A307 /* BenepickerUITests.swift */; };
 		4EF0AC6F1DD8AB2300B82892 /* BPRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF0AC6E1DD8AB2300B82892 /* BPRegex.swift */; };
+		4EF0AC711DD8B0B000B82892 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF0AC701DD8B0B000B82892 /* Receipt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E0E850D1DDF609A0011623D /* ReceiptParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptParser.swift; sourceTree = "<group>"; };
 		4E86E8761DD47DDF00A4A307 /* Benepicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benepicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E86E8791DD47DDF00A4A307 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E86E87B1DD47DDF00A4A307 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		4E86E89C1DD47DDF00A4A307 /* BenepickerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenepickerUITests.swift; sourceTree = "<group>"; };
 		4E86E89E1DD47DDF00A4A307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EF0AC6E1DD8AB2300B82892 /* BPRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRegex.swift; sourceTree = "<group>"; };
+		4EF0AC701DD8B0B000B82892 /* Receipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 			children = (
 				4E86E8791DD47DDF00A4A307 /* AppDelegate.swift */,
 				4E86E87B1DD47DDF00A4A307 /* ViewController.swift */,
+				4EF0AC701DD8B0B000B82892 /* Receipt.swift */,
+				4E0E850D1DDF609A0011623D /* ReceiptParser.swift */,
 				4EF0AC6E1DD8AB2300B82892 /* BPRegex.swift */,
 				4E86E87D1DD47DDF00A4A307 /* Main.storyboard */,
 				4E86E8831DD47DDF00A4A307 /* Assets.xcassets */,
@@ -268,8 +274,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EF0AC711DD8B0B000B82892 /* Receipt.swift in Sources */,
 				4E86E87C1DD47DDF00A4A307 /* ViewController.swift in Sources */,
 				4EF0AC6F1DD8AB2300B82892 /* BPRegex.swift in Sources */,
+				4E0E850E1DDF609A0011623D /* ReceiptParser.swift in Sources */,
 				4E86E87A1DD47DDF00A4A307 /* AppDelegate.swift in Sources */,
 				4E86E8821DD47DDF00A4A307 /* Benepicker.xcdatamodeld in Sources */,
 			);
