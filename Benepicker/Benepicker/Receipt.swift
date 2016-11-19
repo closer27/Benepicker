@@ -24,4 +24,10 @@ class Receipt {
         self.usedPlace = receiptDict["usedPlace"]
         self.accumulated = receiptDict["accumulated"]
     }
+    
+    var description:String {
+        get {
+            return "Receipt object:\nCard: \(card)\nName: \(name)\nDate: \(date)\nSpend: \(spend)\nUsedPlace: \(usedPlace)\nAccumlated: \(accumulated)\n"
+        }
+    }
 }

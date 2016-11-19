@@ -8,18 +8,43 @@
 
 import Foundation
 
-class ReceiptParser {
-    func extractReceipt(_ receiptString: String) -> [String] {
+class ReceiptParser {    
+    func receiptsFromString(_ receiptRawMessage: String) -> [Receipt] {
+        // extract each receiptMessage from receiptRawMessage
+        let extractedReceiptMessages: [String] = self.extractReceipt(receiptRawMessage)
+        
+        // the list for Receipt objects
+        var receipts: [Receipt] = []
+        
+        // process each receipt as Receipt object
+        for receiptMessage in extractedReceiptMessages {
+            // get details from receiptMessage
+            let receiptDetails:[String] = self.extractDetail(receiptMessage)
+            
+            // classify details to dictionary
+            let receiptDict:Dictionary = self.classifyReceipt(receiptDetails)
+            
+            // make new Receipt object
+            let receiptObject:Receipt = Receipt.init(receiptDict)
+            
+            // push the object to the list
+            receipts.append(receiptObject)
+        }
+        return receipts
+    }
+    
+    // Private methods
+    private func extractReceipt(_ receiptString: String) -> [String] {
         return receiptString.components(separatedBy: "[Web발신]\n").filter({ (receipt) -> Bool in
             !receipt.isEmpty
         })
     }
     
-    func extractDetail(_ receiptString: String) -> [String] {
+    private func extractDetail(_ receiptString: String) -> [String] {
         return receiptString.characters.split{$0 == "\n"}.map(String.init)
     }
     
-    func classifyReceipt(_ receiptItems: [String]) -> Dictionary<String, String> {
+    private func classifyReceipt(_ receiptItems: [String]) -> Dictionary<String, String> {
         let cardPattern: String = "^KB국민(카드|체크)\\s*(\\d\\*\\d\\*)?$"
         let namePattern: String = "^\\S{0,}님$"
         let datePattern: String = "^\\d{2}/\\d{2} \\d{2}:\\d{2}$"
