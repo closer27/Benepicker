@@ -49,7 +49,7 @@ class ReceiptParser {
         let namePattern: String = "^\\S{0,}님$"
         let datePattern: String = "^\\d{2}/\\d{2} \\d{2}:\\d{2}$"
         let spendPattern: String = "^[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?(원|\\(US\\$\\))$"
-        let accumulatedPattern: String = "^누적\\s[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?(원|\\(US\\$\\))$"
+        let accumulatedPattern: String = "^(누적|잔여)\\s[0-9]{1,3}(,[0-9]{3})*(.[0-9]{1,2})?(원|\\(US\\$\\))$"
         
         var receiptDict: Dictionary<String, String> = Dictionary.init()
         for item in receiptItems {
