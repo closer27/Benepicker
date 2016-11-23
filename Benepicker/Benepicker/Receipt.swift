@@ -16,13 +16,13 @@ class Receipt {
     let usedPlace: String?
     let accumulated: String?
     
-    init(_ receiptDict: Dictionary<String, String>) {
-        self.card = receiptDict["card"]
-        self.name = receiptDict["name"]
-        self.date = receiptDict["date"]
-        self.spend = receiptDict["spend"]
-        self.usedPlace = receiptDict["usedPlace"]
-        self.accumulated = receiptDict["accumulated"]
+    init(_ receiptDict: Dictionary<String, String>?) {
+        self.card = receiptDict?["card"]
+        self.name = receiptDict?["name"]
+        self.date = receiptDict?["date"]
+        self.spend = receiptDict?["spend"]
+        self.usedPlace = receiptDict?["usedPlace"]
+        self.accumulated = receiptDict?["accumulated"]
     }
     
     var description:String {
