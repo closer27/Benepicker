@@ -131,6 +131,40 @@ class BenepickerTests: XCTestCase {
         XCTAssertEqual(aReceipt.accumulated, "잔여 231,000원", "accumulated is correct")
     }
     
+    /* Invalid message */
+    func testMessageWithInvalidSpend() {
+        let messageWithoutSpend = "[Web발신]\n" +
+            "KB국민카드 4*6*\n" +
+            "김*원님\n" +
+            "11/02 23:32\n" +
+            "세븐일레븐 안양\n" +
+            "누적 486,740원\n"
+        let receipts = receiptParser.receiptsFromString(messageWithoutSpend)
+        XCTAssertEqual(receipts.count, 0, "receipt count is 0")
+    }
+    
+    func testMessageWithInvalidDate() {
+        let messageWithoutSpend = "[Web발신]\n" +
+            "KB국민카드 4*6*\n" +
+            "김*원님\n" +
+            "1,700원\n" +
+            "세븐일레븐 안양\n" +
+            "누적 486,740원\n"
+        let receipts = receiptParser.receiptsFromString(messageWithoutSpend)
+        XCTAssertEqual(receipts.count, 0, "receipt count is 0")
+    }
+    
+    func testMessageWithInvalidUsedPlace() {
+        let messageWithoutSpend = "[Web발신]\n" +
+            "KB국민카드 4*6*\n" +
+            "김*원님\n" +
+            "11/02 23:32\n" +
+            "1,700원\n" +
+            "누적 486,740원\n"
+        let receipts = receiptParser.receiptsFromString(messageWithoutSpend)
+        XCTAssertEqual(receipts.count, 0, "receipt count is 0")
+    }
+    
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

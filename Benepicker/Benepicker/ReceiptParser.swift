@@ -22,13 +22,15 @@ class ReceiptParser {
             let receiptDetails:[String] = self.extractDetail(receiptMessage)
             
             // classify details to dictionary
-            let receiptDict:Dictionary? = self.classifyReceipt(receiptDetails)
+            let receiptDict:Dictionary = self.classifyReceipt(receiptDetails)
             
             // make new Receipt object
-            let receiptObject:Receipt = Receipt.init(receiptDict)
+            let receiptObject:Receipt? = try? Receipt.init(receiptDict)
             
-            // push the object to the list
-            receipts.append(receiptObject)
+            // push the object to the list if exists
+            if let receipt = receiptObject {
+                receipts.append(receipt)
+            }
         }
         return receipts
     }
@@ -44,7 +46,7 @@ class ReceiptParser {
         return receiptString.characters.split{$0 == "\n"}.map(String.init)
     }
     
-    private func classifyReceipt(_ receiptItems: [String]) -> Dictionary<String, String>? {
+    private func classifyReceipt(_ receiptItems: [String]) -> Dictionary<String, String> {
         let cardPattern: String = "^KB국민(카드|체크)\\s*(\\d\\*\\d\\*)?$"
         let namePattern: String = "^\\S{0,}님$"
         let datePattern: String = "^\\d{2}/\\d{2} \\d{2}:\\d{2}$"
@@ -68,14 +70,6 @@ class ReceiptParser {
             }
         }
         
-        return self.validateReceipt(receiptDict)
-    }
-    
-    private func validateReceipt(_ receiptDict:Dictionary<String, String>) -> Dictionary<String, String>? {
-        // validate essential information for calculating benefit (date, spend, usedPlace)
-        if (receiptDict["date"] != nil) && (receiptDict["spend"] != nil) && (receiptDict["usedPlace"] != nil) {
-            return receiptDict
-        }
-        return nil
+        return receiptDict
     }
 }
