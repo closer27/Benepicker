@@ -14,7 +14,7 @@ enum ReceiptError: Error {
     case InvalidUsedPlace
 }
 
-class Receipt {
+class ReceiptObject {
     var card: String?
     var name: String?
     var date: String?

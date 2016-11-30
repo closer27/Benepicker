@@ -7,17 +7,38 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet var tableView: UITableView!
 
     let receiptParser: ReceiptParser = ReceiptParser.init()
-    var receipts: [Receipt] = []
+    var receipts = [NSManagedObject]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 1
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        // 2
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Receipt")
+        
+        // 3
+        do {
+            let results = try managedContext.fetch(fetchRequest)
+            receipts = results as! [NSManagedObject]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,8 +48,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBAction func pasteMessages(_ sender: Any) {
         if UIPasteboard.general.hasStrings, let receiptMessages = UIPasteboard.general.strings {
-            receipts = receiptParser.receiptsFromString(receiptMessages[0])
+            let receiptObjects: [ReceiptObject] = receiptParser.receiptsFromString(receiptMessages[0])
+            self.saveData(receiptObjects)
             tableView.reloadData()
+        }
+    }
+    
+    func saveData(_ receiptObjects:[ReceiptObject]) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Receipt", in: managedContext)
+        
+        for aReceipt in receiptObjects {
+            let receipt = NSManagedObject(entity: entity!, insertInto: managedContext)
+            receipt.setValue(aReceipt.card, forKey: "card")
+            receipt.setValue(aReceipt.name, forKey: "name")
+            receipt.setValue(aReceipt.spend, forKey: "spend")
+            receipt.setValue(aReceipt.usedPlace, forKey: "usedPlace")
+            receipt.setValue(aReceipt.accumulated, forKey: "accumulated")
+            
+            do {
+                try managedContext.save()
+                receipts.append(receipt)
+            } catch let error as NSError {
+                print("Could not save \(error), \(error.userInfo)")
+            }
         }
     }
 
@@ -42,10 +87,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 for: indexPath) as! ReceiptTableViewCell
         let row = indexPath.row;
 
-        let receipt: Receipt = receipts[row]
-        cell.spendLabel.text = receipt.spend
-        cell.dateLabel.text = receipt.date
-        cell.usedPlaceLabel.text = receipt.usedPlace
+        let receipt = receipts[row]
+        cell.spendLabel.text = receipt.value(forKey: "spend") as? String
+//        cell.dateLabel.text = receipt.value(forKey: "date")
+        cell.usedPlaceLabel.text = receipt.value(forKey: "usedPlace") as? String
 
         return cell
     }
