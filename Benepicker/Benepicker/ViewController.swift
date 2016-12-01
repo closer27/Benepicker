@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let receiptParser: ReceiptParser = ReceiptParser.init()
     var receipts = [NSManagedObject]()
 
+    // MARK: - View Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -46,6 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - IBActions
     @IBAction func pasteMessages(_ sender: Any) {
         if UIPasteboard.general.hasStrings, let receiptMessages = UIPasteboard.general.strings {
             let receiptObjects: [ReceiptObject] = receiptParser.receiptsFromString(receiptMessages[0])
@@ -54,9 +56,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func saveData(_ receiptObjects:[ReceiptObject]) {
+    // MARK: - Private Methods
+    func getContext () -> NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let managedContext = appDelegate.persistentContainer.viewContext
+        return appDelegate.persistentContainer.viewContext
+    }
+    
+    func saveData(_ receiptObjects:[ReceiptObject]) {
+        let managedContext = getContext()
         
         let entity = NSEntityDescription.entity(forEntityName: "Receipt", in: managedContext)
         
@@ -65,6 +72,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             receipt.setValue(aReceipt.card, forKey: "card")
             receipt.setValue(aReceipt.name, forKey: "name")
             receipt.setValue(aReceipt.spend, forKey: "spend")
+            receipt.setValue(aReceipt.date, forKey: "date")
             receipt.setValue(aReceipt.usedPlace, forKey: "usedPlace")
             receipt.setValue(aReceipt.accumulated, forKey: "accumulated")
             
@@ -77,7 +85,34 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
 
-    /* TableView DataSource */
+    func deleteData(_ receipt: Receipt) {
+        let managedContext = getContext()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Receipt")
+
+        let result = try? managedContext.fetch(fetchRequest)
+        let resultData = result as! [Receipt]
+        
+        for object in resultData {
+            if receipt == object {
+                managedContext.delete(object)
+            }
+            
+            do {
+                try managedContext.save()
+                deleteFromArray(receipt)    // remove from array after removing object
+            } catch let error as NSError  {
+                print("Could not save \(error), \(error.userInfo)")
+            } catch {
+                
+            }
+        }
+    }
+    
+    func deleteFromArray(_ object: NSManagedObject) {
+        receipts = receipts.filter() { $0 !== object }
+    }
+
+    // MARK: - TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return receipts.count
     }
@@ -89,13 +124,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         let receipt = receipts[row]
         cell.spendLabel.text = receipt.value(forKey: "spend") as? String
-//        cell.dateLabel.text = receipt.value(forKey: "date")
+        cell.dateLabel.text = receipt.value(forKey: "date") as? String
         cell.usedPlaceLabel.text = receipt.value(forKey: "usedPlace") as? String
 
         return cell
     }
 
-    /* TableView Delegate */
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let receipt: Receipt = receipts[indexPath.row] as! Receipt
+            self.deleteData(receipt)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        }
+    }
+
+
+    // MARK: - TableView Delegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 58
     }
