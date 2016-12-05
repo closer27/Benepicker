@@ -74,7 +74,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             receipt.setValue(aReceipt.spend, forKey: "spend")
             receipt.setValue(aReceipt.date, forKey: "date")
             receipt.setValue(aReceipt.usedPlace, forKey: "usedPlace")
-            receipt.setValue(aReceipt.accumulated, forKey: "accumulated")
             
             do {
                 try managedContext.save()

@@ -65,7 +65,6 @@ class BenepickerTests: XCTestCase {
         XCTAssertEqual(aReceipt.date, "11/02 23:32", "date is correct")
         XCTAssertEqual(aReceipt.spend, "1,700원", "spend is correct")
         XCTAssertEqual(aReceipt.usedPlace, "세븐일레븐 안양", "usedPlace is correct")
-        XCTAssertEqual(aReceipt.accumulated, "누적 486,740원", "accumulated is correct")
     }
     
     /* test multiple messages */
@@ -88,7 +87,6 @@ class BenepickerTests: XCTestCase {
         XCTAssertEqual(secondReceipt.date, "11/03 09:29", "date is correct")
         XCTAssertEqual(secondReceipt.spend, "3,300원", "spend is correct")
         XCTAssertEqual(secondReceipt.usedPlace, "스타벅스커피코", "usedPlace is correct")
-        XCTAssertEqual(secondReceipt.accumulated, "누적 490,040원", "accumulated is correct")
     }
     
     /* other format */
@@ -108,7 +106,6 @@ class BenepickerTests: XCTestCase {
         XCTAssertEqual(aReceipt.date, "11/02 23:32", "date is correct")
         XCTAssertEqual(aReceipt.spend, "1,700원", "spend is correct")
         XCTAssertEqual(aReceipt.usedPlace, "세븐일레븐 안양", "usedPlace is correct")
-        XCTAssertNil(aReceipt.accumulated, "accumulated is nil")
     }
     
     func testReceiptNotCreditButCheck() {
@@ -128,7 +125,6 @@ class BenepickerTests: XCTestCase {
         XCTAssertEqual(aReceipt.date, "10/15 03:51", "date is correct")
         XCTAssertEqual(aReceipt.spend, "4,800원", "spend is correct")
         XCTAssertEqual(aReceipt.usedPlace, "티머니 택시", "usedPlace is correct")
-        XCTAssertEqual(aReceipt.accumulated, "잔여 231,000원", "accumulated is correct")
     }
     
     /* Invalid message */

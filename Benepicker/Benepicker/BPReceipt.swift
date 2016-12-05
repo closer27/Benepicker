@@ -20,7 +20,6 @@ class BPReceipt {
     var date: String?
     var spend: String?
     var usedPlace: String?
-    var accumulated: String?
     
     init(_ receiptDict: Dictionary<String, String>) throws {
         guard let date = receiptDict["date"] else {
@@ -46,13 +45,11 @@ class BPReceipt {
         
         self.card = receiptDict["card"]
         self.name = receiptDict["name"]
-        
-        self.accumulated = receiptDict["accumulated"]
     }
     
     var description:String {
         get {
-            return "Receipt object:\nCard: \(card)\nName: \(name)\nDate: \(date)\nSpend: \(spend)\nUsedPlace: \(usedPlace)\nAccumlated: \(accumulated)\n"
+            return "Receipt object:\nCard: \(card)\nName: \(name)\nDate: \(date)\nSpend: \(spend)\nUsedPlace: \(usedPlace)\n"
         }
     }
 }
