@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReceiptTableViewCell: UITableViewCell {
+class BPReceiptTableViewCell: UITableViewCell {
     
     @IBOutlet weak var spendLabel: UILabel!
     @IBOutlet weak var usedPlaceLabel: UILabel!

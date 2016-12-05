@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum ReceiptError: Error {
+enum BPReceiptError: Error {
     case InvalidSpend
     case InvalidDate
     case InvalidUsedPlace
 }
 
-class ReceiptObject {
+class BPReceipt {
     var card: String?
     var name: String?
     var date: String?
@@ -24,20 +24,20 @@ class ReceiptObject {
     
     init(_ receiptDict: Dictionary<String, String>) throws {
         guard let date = receiptDict["date"] else {
-            throw ReceiptError.InvalidDate
+            throw BPReceiptError.InvalidDate
         }
         
         guard let spend = receiptDict["spend"] else {
-            throw ReceiptError.InvalidSpend
+            throw BPReceiptError.InvalidSpend
         }
         
         guard let usedPlace = receiptDict["usedPlace"] else {
-            throw ReceiptError.InvalidUsedPlace
+            throw BPReceiptError.InvalidUsedPlace
         }
 
         let isInvalid = usedPlace.characters.contains{"\n".characters.contains($0)}
         if isInvalid {
-            throw ReceiptError.InvalidUsedPlace
+            throw BPReceiptError.InvalidUsedPlace
         }
         
         self.date = date

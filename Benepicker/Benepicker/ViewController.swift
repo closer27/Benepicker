@@ -12,7 +12,7 @@ import CoreData
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet var tableView: UITableView!
 
-    let receiptParser: ReceiptParser = ReceiptParser.init()
+    let receiptParser: BPReceiptParser = BPReceiptParser.init()
     var receipts = [NSManagedObject]()
 
     // MARK: - View Life Cycles
@@ -50,7 +50,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - IBActions
     @IBAction func pasteMessages(_ sender: Any) {
         if UIPasteboard.general.hasStrings, let receiptMessages = UIPasteboard.general.strings {
-            let receiptObjects: [ReceiptObject] = receiptParser.receiptsFromString(receiptMessages[0])
+            let receiptObjects: [BPReceipt] = receiptParser.receiptsFromString(receiptMessages[0])
             self.saveData(receiptObjects)
             tableView.reloadData()
         }
@@ -62,7 +62,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return appDelegate.persistentContainer.viewContext
     }
     
-    func saveData(_ receiptObjects:[ReceiptObject]) {
+    func saveData(_ receiptObjects:[BPReceipt]) {
         let managedContext = getContext()
         
         let entity = NSEntityDescription.entity(forEntityName: "Receipt", in: managedContext)
@@ -85,12 +85,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
 
-    func deleteData(_ receipt: Receipt) {
+    func deleteData(_ receipt: BPReceiptManagedObject) {
         let managedContext = getContext()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Receipt")
 
         let result = try? managedContext.fetch(fetchRequest)
-        let resultData = result as! [Receipt]
+        let resultData = result as! [BPReceiptManagedObject]
         
         for object in resultData {
             if receipt == object {
@@ -118,8 +118,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: ReceiptTableViewCell = tableView.dequeueReusableCell(withIdentifier: "receiptCellIdentifier",
-                for: indexPath) as! ReceiptTableViewCell
+        let cell: BPReceiptTableViewCell = tableView.dequeueReusableCell(withIdentifier: "receiptCellIdentifier",
+                for: indexPath) as! BPReceiptTableViewCell
         let row = indexPath.row;
 
         let receipt = receipts[row]
@@ -132,7 +132,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            let receipt: Receipt = receipts[indexPath.row] as! Receipt
+            let receipt: BPReceiptManagedObject = receipts[indexPath.row] as! BPReceiptManagedObject
             self.deleteData(receipt)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }

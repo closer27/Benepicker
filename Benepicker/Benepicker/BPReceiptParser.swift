@@ -8,13 +8,13 @@
 
 import Foundation
 
-class ReceiptParser {    
-    func receiptsFromString(_ receiptRawMessage: String) -> [ReceiptObject] {
+class BPReceiptParser {
+    func receiptsFromString(_ receiptRawMessage: String) -> [BPReceipt] {
         // extract each receiptMessage from receiptRawMessage
         let extractedReceiptMessages: [String] = self.extractReceipt(receiptRawMessage)
         
         // the list for Receipt objects
-        var receipts: [ReceiptObject] = []
+        var receipts: [BPReceipt] = []
         
         // process each receipt as Receipt object
         for receiptMessage in extractedReceiptMessages {
@@ -25,7 +25,7 @@ class ReceiptParser {
             let receiptDict:Dictionary = self.classifyReceipt(receiptDetails)
             
             // make new Receipt object
-            let receiptObject:ReceiptObject? = try? ReceiptObject.init(receiptDict)
+            let receiptObject:BPReceipt? = try? BPReceipt.init(receiptDict)
             
             // push the object to the list if exists
             if let aReceiptObject = receiptObject {

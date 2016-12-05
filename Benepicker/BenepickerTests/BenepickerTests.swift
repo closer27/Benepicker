@@ -10,14 +10,14 @@ import XCTest
 @testable import Benepicker
 
 class BenepickerTests: XCTestCase {
-    var receiptParser:ReceiptParser!
+    var receiptParser:BPReceiptParser!
     var oneMessage:String!
     var multipleMessage:String!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        receiptParser = ReceiptParser.init()
+        receiptParser = BPReceiptParser.init()
         oneMessage = "[Web발신]\n" +
             "KB국민카드 4*6*\n" +
             "김*원님\n" +
