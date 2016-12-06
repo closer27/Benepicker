@@ -123,7 +123,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         let receipt = receipts[row]
         cell.spendLabel.text = receipt.value(forKey: "spend") as? String
-        cell.dateLabel.text = receipt.value(forKey: "date") as? String
+        if let date = receipt.value(forKey: "date") as? Date {
+            cell.dateLabel.text = stringFrom(date: date)
+        }
         cell.usedPlaceLabel.text = receipt.value(forKey: "usedPlace") as? String
 
         return cell

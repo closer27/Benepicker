@@ -25,3 +25,10 @@ func thisYear() -> Int {
     let calendar = Calendar.current
     return calendar.component(.year, from: Date())
 }
+
+func stringFrom(date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = DateFormatter.Style.short
+
+    return dateFormatter.string(from: date)
+}

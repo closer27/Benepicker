@@ -17,7 +17,7 @@ enum BPReceiptError: Error {
 class BPReceipt {
     var card: String?
     var name: String?
-    var date: String?
+    var date: Date?
     var spend: String?
     var usedPlace: String?
     
@@ -39,7 +39,8 @@ class BPReceipt {
             throw BPReceiptError.InvalidUsedPlace
         }
         
-        self.date = date
+        self.date = dateFrom(MMddHHmm: date)
+        
         self.spend = spend
         self.usedPlace = usedPlace
         
