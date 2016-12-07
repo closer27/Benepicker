@@ -122,7 +122,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let row = indexPath.row;
 
         let receipt = receipts[row]
-        cell.spendLabel.text = receipt.value(forKey: "spend") as? String
+        if let spend = receipt.value(forKey: "spend") as? Decimal {
+            cell.spendLabel.text = spend.description
+        }
         if let date = receipt.value(forKey: "date") as? Date {
             cell.dateLabel.text = stringFrom(date: date)
         }

@@ -18,7 +18,7 @@ class BPReceipt {
     var card: String?
     var name: String?
     var date: Date?
-    var spend: String?
+    var spend: Decimal?
     var usedPlace: String?
     
     init(_ receiptDict: Dictionary<String, String>) throws {
@@ -40,8 +40,8 @@ class BPReceipt {
         }
         
         self.date = dateFrom(MMddHHmm: date)
+        self.spend = decimalFrom(string: spend)
         
-        self.spend = spend
         self.usedPlace = usedPlace
         
         self.card = receiptDict["card"]

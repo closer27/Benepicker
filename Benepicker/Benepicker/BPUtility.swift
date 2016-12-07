@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: Date
 func dateFrom(MMddHHmm: String) -> Date? {
     // add year
     let dateString = "\(MMddHHmm) \(thisYear())"
@@ -31,4 +32,13 @@ func stringFrom(date: Date) -> String {
     dateFormatter.dateStyle = DateFormatter.Style.short
 
     return dateFormatter.string(from: date)
+}
+
+// MARK: Currency
+func decimalFrom(string spend: String) -> Decimal? {
+    let spendOnlyNumber = spend.characters.filter({ (character) -> Bool in
+        Int(String(character)) != nil
+    })
+        
+    return Decimal.init(string: String(spendOnlyNumber))
 }
