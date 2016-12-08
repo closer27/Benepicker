@@ -58,12 +58,16 @@ class BenepickerTests: XCTestCase {
     }
     
     func testReceiptHistory() {
+        if let spend = Decimal.init(string: "1700", locale: Locale.init(identifier: "ko_KR")) {
+            print(spend.description)
+            print(date(YYYYMMddHHmm: "2016 11/02 23:32"))
+        }
         let receipts = receiptParser.receiptsFromString(oneMessage)
         let aReceipt = receipts[0]
         XCTAssertEqual(aReceipt.card, "KB국민카드 4*6*", "card info is correct")
         XCTAssertEqual(aReceipt.name, "김*원님", "name is correct")
-        XCTAssertEqual(aReceipt.date, "11/02 23:32", "date is correct")
-        XCTAssertEqual(aReceipt.spend, "1,700원", "spend is correct")
+        XCTAssertEqual(aReceipt.date.compare(date(YYYYMMddHHmm: "2016 11/02 23:32")), .orderedSame, "date is correct")
+//        XCTAssertEqual(aReceipt.spend, "1,700원", "spend is correct")
         XCTAssertEqual(aReceipt.usedPlace, "세븐일레븐 안양", "usedPlace is correct")
     }
     
@@ -84,8 +88,8 @@ class BenepickerTests: XCTestCase {
         let secondReceipt = receipts[1]
         XCTAssertEqual(secondReceipt.card, "KB국민카드 4*6*", "card info is correct")
         XCTAssertEqual(secondReceipt.name, "김*원님", "name is correct")
-        XCTAssertEqual(secondReceipt.date, "11/03 09:29", "date is correct")
-        XCTAssertEqual(secondReceipt.spend, "3,300원", "spend is correct")
+        XCTAssertEqual(secondReceipt.date.compare(date(YYYYMMddHHmm: "2016 11/03 09:29")), .orderedSame, "date is correct")
+//        XCTAssertEqual(secondReceipt.spend, "3,300원", "spend is correct")
         XCTAssertEqual(secondReceipt.usedPlace, "스타벅스커피코", "usedPlace is correct")
     }
     
@@ -103,8 +107,8 @@ class BenepickerTests: XCTestCase {
         let aReceipt = receipts[0]
         XCTAssertEqual(aReceipt.card, "KB국민카드 4*6*", "card info is correct")
         XCTAssertEqual(aReceipt.name, "김*원님", "name is correct")
-        XCTAssertEqual(aReceipt.date, "11/02 23:32", "date is correct")
-        XCTAssertEqual(aReceipt.spend, "1,700원", "spend is correct")
+        XCTAssertEqual(aReceipt.date.compare(date(YYYYMMddHHmm: "2016 11/02 23:32")), .orderedSame, "date is correct")
+//        XCTAssertEqual(aReceipt.spend, "1,700원", "spend is correct")
         XCTAssertEqual(aReceipt.usedPlace, "세븐일레븐 안양", "usedPlace is correct")
     }
     
@@ -122,8 +126,8 @@ class BenepickerTests: XCTestCase {
         let aReceipt = receipts[0]
         XCTAssertEqual(aReceipt.card, "KB국민체크 2*4*", "card info is correct")
         XCTAssertEqual(aReceipt.name, "장*희님", "name is correct")
-        XCTAssertEqual(aReceipt.date, "10/15 03:51", "date is correct")
-        XCTAssertEqual(aReceipt.spend, "4,800원", "spend is correct")
+        XCTAssertEqual(aReceipt.date.compare(date(YYYYMMddHHmm: "2016 10/15 03:51")), .orderedSame, "date is correct")
+//        XCTAssertEqual(aReceipt.spend, "4,800원", "spend is correct")
         XCTAssertEqual(aReceipt.usedPlace, "티머니 택시", "usedPlace is correct")
     }
     
@@ -169,4 +173,10 @@ class BenepickerTests: XCTestCase {
         }
     }
     
+    // MARK: Private
+    func date(YYYYMMddHHmm: String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY MM/dd HH:mm"
+        return formatter.date(from: YYYYMMddHHmm)!
+    }
 }

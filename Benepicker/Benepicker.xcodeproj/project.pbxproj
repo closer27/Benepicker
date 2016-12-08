@@ -13,6 +13,7 @@
 		4E0E85111DE056D20011623D /* BPRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF0AC6E1DD8AB2300B82892 /* BPRegex.swift */; };
 		4E2D11A41DF57C7100EA0CF8 /* BPUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2D11A31DF57C7100EA0CF8 /* BPUtility.swift */; };
 		4E3084F31DED93B9001FD083 /* BPReceiptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3084F21DED93B9001FD083 /* BPReceiptTableViewCell.swift */; };
+		4E52589A1DF8388800F7E4FA /* BPUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2D11A31DF57C7100EA0CF8 /* BPUtility.swift */; };
 		4E86E87A1DD47DDF00A4A307 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86E8791DD47DDF00A4A307 /* AppDelegate.swift */; };
 		4E86E87C1DD47DDF00A4A307 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86E87B1DD47DDF00A4A307 /* ViewController.swift */; };
 		4E86E87F1DD47DDF00A4A307 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E86E87D1DD47DDF00A4A307 /* Main.storyboard */; };
@@ -298,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E52589A1DF8388800F7E4FA /* BPUtility.swift in Sources */,
 				4E0E85101DE051690011623D /* BPReceipt.swift in Sources */,
 				4E0E85111DE056D20011623D /* BPRegex.swift in Sources */,
 				4E86E8921DD47DDF00A4A307 /* BenepickerTests.swift in Sources */,

@@ -17,32 +17,40 @@ enum BPReceiptError: Error {
 class BPReceipt {
     var card: String?
     var name: String?
-    var date: Date?
-    var spend: Decimal?
-    var usedPlace: String?
+    var date: Date
+    var spend: Decimal
+    var usedPlace: String
     
     init(_ receiptDict: Dictionary<String, String>) throws {
-        guard let date = receiptDict["date"] else {
+        guard let dateString = receiptDict["date"] else {
             throw BPReceiptError.InvalidDate
         }
         
-        guard let spend = receiptDict["spend"] else {
+        guard let spendString = receiptDict["spend"] else {
             throw BPReceiptError.InvalidSpend
         }
         
-        guard let usedPlace = receiptDict["usedPlace"] else {
+        guard let usedPlaceString = receiptDict["usedPlace"] else {
             throw BPReceiptError.InvalidUsedPlace
         }
 
-        let isInvalid = usedPlace.characters.contains{"\n".characters.contains($0)}
+        let isInvalid = usedPlaceString.characters.contains{"\n".characters.contains($0)}
         if isInvalid {
             throw BPReceiptError.InvalidUsedPlace
         }
         
-        self.date = dateFrom(MMddHHmm: date)
-        self.spend = decimalFrom(string: spend)
+        if let date = dateFrom(MMddHHmm: dateString) {
+            self.date = date
+        } else {
+            throw BPReceiptError.InvalidSpend
+        }
+        if let spend = decimalFrom(string: spendString) {
+            self.spend = spend
+        } else {
+            throw BPReceiptError.InvalidSpend
+        }
         
-        self.usedPlace = usedPlace
+        self.usedPlace = usedPlaceString
         
         self.card = receiptDict["card"]
         self.name = receiptDict["name"]
