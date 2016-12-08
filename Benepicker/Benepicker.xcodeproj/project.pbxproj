@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0E850E1DDF609A0011623D /* BPReceiptParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0E850D1DDF609A0011623D /* BPReceiptParser.swift */; };
+		4E0E850F1DE051660011623D /* BPReceiptParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0E850D1DDF609A0011623D /* BPReceiptParser.swift */; };
+		4E0E85101DE051690011623D /* BPReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF0AC701DD8B0B000B82892 /* BPReceipt.swift */; };
+		4E0E85111DE056D20011623D /* BPRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF0AC6E1DD8AB2300B82892 /* BPRegex.swift */; };
+		4E2D11A41DF57C7100EA0CF8 /* BPUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2D11A31DF57C7100EA0CF8 /* BPUtility.swift */; };
+		4E3084F31DED93B9001FD083 /* BPReceiptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3084F21DED93B9001FD083 /* BPReceiptTableViewCell.swift */; };
+		4E52589A1DF8388800F7E4FA /* BPUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2D11A31DF57C7100EA0CF8 /* BPUtility.swift */; };
 		4E86E87A1DD47DDF00A4A307 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86E8791DD47DDF00A4A307 /* AppDelegate.swift */; };
 		4E86E87C1DD47DDF00A4A307 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86E87B1DD47DDF00A4A307 /* ViewController.swift */; };
 		4E86E87F1DD47DDF00A4A307 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E86E87D1DD47DDF00A4A307 /* Main.storyboard */; };
@@ -15,6 +22,8 @@
 		4E86E8871DD47DDF00A4A307 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E86E8851DD47DDF00A4A307 /* LaunchScreen.storyboard */; };
 		4E86E8921DD47DDF00A4A307 /* BenepickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86E8911DD47DDF00A4A307 /* BenepickerTests.swift */; };
 		4E86E89D1DD47DDF00A4A307 /* BenepickerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86E89C1DD47DDF00A4A307 /* BenepickerUITests.swift */; };
+		4EF0AC6F1DD8AB2300B82892 /* BPRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF0AC6E1DD8AB2300B82892 /* BPRegex.swift */; };
+		4EF0AC711DD8B0B000B82892 /* BPReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF0AC701DD8B0B000B82892 /* BPReceipt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E0E850D1DDF609A0011623D /* BPReceiptParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPReceiptParser.swift; sourceTree = "<group>"; };
+		4E2D11A31DF57C7100EA0CF8 /* BPUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPUtility.swift; sourceTree = "<group>"; };
+		4E3084F21DED93B9001FD083 /* BPReceiptTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPReceiptTableViewCell.swift; sourceTree = "<group>"; };
 		4E86E8761DD47DDF00A4A307 /* Benepicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benepicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E86E8791DD47DDF00A4A307 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E86E87B1DD47DDF00A4A307 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +61,8 @@
 		4E86E8981DD47DDF00A4A307 /* BenepickerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BenepickerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E86E89C1DD47DDF00A4A307 /* BenepickerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenepickerUITests.swift; sourceTree = "<group>"; };
 		4E86E89E1DD47DDF00A4A307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4EF0AC6E1DD8AB2300B82892 /* BPRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPRegex.swift; sourceTree = "<group>"; };
+		4EF0AC701DD8B0B000B82892 /* BPReceipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPReceipt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +115,11 @@
 			children = (
 				4E86E8791DD47DDF00A4A307 /* AppDelegate.swift */,
 				4E86E87B1DD47DDF00A4A307 /* ViewController.swift */,
+				4E3084F21DED93B9001FD083 /* BPReceiptTableViewCell.swift */,
+				4EF0AC701DD8B0B000B82892 /* BPReceipt.swift */,
+				4E0E850D1DDF609A0011623D /* BPReceiptParser.swift */,
+				4EF0AC6E1DD8AB2300B82892 /* BPRegex.swift */,
+				4E2D11A31DF57C7100EA0CF8 /* BPUtility.swift */,
 				4E86E87D1DD47DDF00A4A307 /* Main.storyboard */,
 				4E86E8831DD47DDF00A4A307 /* Assets.xcassets */,
 				4E86E8851DD47DDF00A4A307 /* LaunchScreen.storyboard */,
@@ -265,7 +284,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E2D11A41DF57C7100EA0CF8 /* BPUtility.swift in Sources */,
+				4EF0AC711DD8B0B000B82892 /* BPReceipt.swift in Sources */,
 				4E86E87C1DD47DDF00A4A307 /* ViewController.swift in Sources */,
+				4EF0AC6F1DD8AB2300B82892 /* BPRegex.swift in Sources */,
+				4E0E850E1DDF609A0011623D /* BPReceiptParser.swift in Sources */,
+				4E3084F31DED93B9001FD083 /* BPReceiptTableViewCell.swift in Sources */,
 				4E86E87A1DD47DDF00A4A307 /* AppDelegate.swift in Sources */,
 				4E86E8821DD47DDF00A4A307 /* Benepicker.xcdatamodeld in Sources */,
 			);
@@ -275,7 +299,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E52589A1DF8388800F7E4FA /* BPUtility.swift in Sources */,
+				4E0E85101DE051690011623D /* BPReceipt.swift in Sources */,
+				4E0E85111DE056D20011623D /* BPRegex.swift in Sources */,
 				4E86E8921DD47DDF00A4A307 /* BenepickerTests.swift in Sources */,
+				4E0E850F1DE051660011623D /* BPReceiptParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +544,7 @@
 				4E86E8A31DD47DDF00A4A307 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4E86E8A41DD47DDF00A4A307 /* Build configuration list for PBXNativeTarget "BenepickerTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +553,7 @@
 				4E86E8A61DD47DDF00A4A307 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4E86E8A71DD47DDF00A4A307 /* Build configuration list for PBXNativeTarget "BenepickerUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +562,7 @@
 				4E86E8A91DD47DDF00A4A307 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
